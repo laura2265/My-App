@@ -3,6 +3,7 @@ import '../App.css';
 import Logo from '../assets/img/logo.png';
 import Reporte from '../assets/img/informe-seo.png';
 import Crear from '../assets/img/anadir.png'
+import { Link } from 'react-router-dom';
 
 function ConsultarReserva() {
     const [dataReserva, setDataReserva] = useState([]);
@@ -89,25 +90,28 @@ function ConsultarReserva() {
         return matchesId && matchesTelefono && matchesCantidad && matchesFecha && matchesHora;
     });
 
-    // Inhabilitar o habilitar la reserva
     const updateStatus = async (id, estado) => {
         try {
             const nuevoEstado = estado === 'Activo' ? 'Inactivo' : 'Activo';
+            console.log(`Actualizando el estado de la reserva: ${id} a ${nuevoEstado}`);
+            
             const response = await fetch(`http://localhost:3001/reserva/${id}/estado`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ estado: nuevoEstado })
+                body: JSON.stringify({ estado: nuevoEstado }),
             });
-
+            
+    
             if (!response.ok) {
-                throw new Error(`Error al momento de actualizar los datos del ID: ${id}`);
+                throw new Error(`Error al actualizar el estado del ID: ${id}`);
             }
-
+    
             const data = await response.json();
-            console.log(`Respuesta al actualizar el estado:\n ${data}\n ${id} \n${estado}`);
-
+            console.log('Respuesta de la API:', data);
+    
+            // Actualizar el estado local
             setDataReserva((prevData) =>
                 prevData.map((reserva) =>
                     reserva.id === id ? { ...reserva, estado: nuevoEstado } : reserva
@@ -115,9 +119,11 @@ function ConsultarReserva() {
             );
             closeModal();
         } catch (error) {
-            console.error(`Error al actualizar los datos de la reserva: ${error}`);
+            console.error(`Error al actualizar el estado: ${error}`);
         }
     };
+    
+    
 
     return (
         <div className='contentProyect'>
@@ -126,8 +132,8 @@ function ConsultarReserva() {
             </div>
             <div className='headers'>
                 <div className='button'>
-                    <div className="Boton1"><img src={Crear} /> </div>
-                    <div className="Boton3"><img src={Reporte} /> </div>
+                    <Link to='/create'  className='Boton1'>Crear <img src={Crear} /> </Link>
+                    <Link to='/update' className='Boton3'>Reporte <img src={Reporte} /></Link>
                 </div>
             </div>
 
@@ -183,17 +189,17 @@ function ConsultarReserva() {
                                         <td>{reserva.horaReserva}</td>
                                         <td>{reserva.estado}</td>
                                         <td>
-                                            <button className='buttonactualizar'>Actualizar</button>
+                                            <Link to={`/update/${reserva.id}`} className='buttonactualizar'>Actualizar</Link>
                                         </td>
                                         <td>
                                             <button className='inabilitarButton' onClick={() => openModal(reserva)}>
-                                                {reserva.estado === "Activo" ? "Inhabilitar" : "Habilitar"}
+                                                {reserva.estado === "Activo" ? "Inactivar" : "Activar"}
                                             </button>
                                         </td>
                                     </tr>
                                 ))
                             ) : (
-                                <tr>
+                                <tr>    
                                     <td colSpan={9}>No se encontraron reservas</td>
                                 </tr>
                             )}
@@ -207,11 +213,12 @@ function ConsultarReserva() {
                     <div className="ventana-popup">
                         <div className="contenido-popup">
                             <p>
-                                ¿Estás seguro de querer {selectedReserva.estado === "Activo" ? "Inhabilitar" : "Habilitar"} esta reserva?
+                                ¿Estás seguro de querer {""} {selectedReserva.estado === "Activo" ? "Inactivar" : "Activar"} esta reserva?
                             </p>
                             <button className="confirmInactivar" onClick={() => updateStatus(selectedReserva.id, selectedReserva.estado)}>
                                 Confirmar
                             </button>
+
                             <button className="cancelInactivar" onClick={closeModal}>Cancelar</button>
                         </div>
                     </div>

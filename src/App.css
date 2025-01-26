@@ -1,0 +1,179 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contentProyect{
+  margin-top: -30px;
+  height: 100vh;
+  width: 100vw;
+  background-color: #92929267;
+}
+.headers{
+  position: absolute;
+  right: 35px;
+  margin-top: 32px;
+}
+
+.button{
+  display: flex;
+  margin: 10px;
+}
+
+.conetnLogo{
+  position: absolute;
+  left: 0;
+  margin-top: 22px;
+}
+.conetnLogo img{
+  height: 100px;
+  margin-left: 35px;
+}
+
+.Boton1, .Boton2, .Boton3, .Boton4{
+  background-color: #8C7E6C;
+  padding: 10px;
+  margin: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 10px 7px 10px rgba(0, 0, 0, 0.4);
+}
+
+.contentButton{
+  position: relative;
+  top: 140px;
+  margin: 22px;
+  height: 100px;
+  display: flex;
+  padding-top: 22px;
+}
+
+.barraBusqueda{
+  margin-left: 22px;
+}
+.barraBusqueda input{
+  height: 40px;
+  width: 300px;
+  border-radius: 7px;
+  border: 1px solid #333;
+  padding-left: 12px;
+}
+.contentConsultar{
+  margin-top: 55;
+  height: 760px;
+}
+
+.contentTable{
+  position: relative;
+  top: 140px;
+  margin-left: 37px;
+  width: 1850px;
+  height: 500px;
+  padding: 22px;
+  overflow-y: scroll;
+  border-radius: 7px;
+}
+
+.contentTable table{
+  width: 1800px;
+}
+
+.contentTable th{
+  padding: 12px;
+  border: none;
+  border-bottom: 1px solid #bbb;
+}
+
+.contentTable td{
+  font-size: 12px;
+  border: none;
+  text-align: center;
+}
+.buttonactualizar{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  border: 1px solid lightblue;
+  padding: 6px;
+  border-radius: 7px;
+  background-color: rgb(129, 181, 233);
+  font-size: 15px;
+}
+
+.buttonactualizar:hover{
+  transition: 1s;
+  text-decoration: none;
+  background-color: lightblue;
+  color: #333;
+}
+
+.inabilitarButton{
+  margin-top: 3px;
+  border-radius: 7px;
+  padding: 7px;
+  font-size: 130 px;
+  color: white;
+}
+/* Fondo oscuro detrás del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.395); 
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ventana-popup {
+  position: relative; 
+  background: #ffffff;
+  padding: 40px 60px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.079);
+  z-index: 1000; 
+}
+
+/* Botón dentro del modal */
+.ventana-popup button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ventana-popup button:hover {
+  background-color: #e60000;
+}
+
+/*button inabilitar*/
+.inabilitarButton{
+  margin-top: 3px;
+  border-radius: 7px;
+  padding: 7px;
+  font-size: 130 px;
+  color: rgb(17, 17, 17);
+}
+
+.inabilitarButton.activo{
+  background-color: #e60000;
+  border: 1px solid lightcoral;
+}
+.inabilitarButton.inactivo{
+  background-color: rgb(121, 121, 121);
+  border: 1px solid #333;
+}
+
+.confirmInactivar{
+  margin-left: 62px;
+}
+
+.cancelInactivar{
+  margin-left: 42px;
+}
